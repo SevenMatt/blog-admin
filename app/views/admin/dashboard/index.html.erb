@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Administração do Portifólio</h1>
+    <%= link_to "Novo Projeto", new_admin_project-path, class: "btn-primary" %>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Mídia</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @projects.each do |project| %>
+                <tr>
+                    <td><%= project.title %></td>
+                    <td><%= project.description %></td>
+                    <td><img src="<%= project.media %>" width"100"></td>
+                    <td>
+                        <%= link_to "Editar", edit_admin_project_path(project), class: "btn btn-warning" %>
+                        <%= link_to "Deletar", admin_project_path(project), method: :delet, class: "btn btn-danger", data: { confirm "Tem certeza?" } %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
