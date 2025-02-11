@@ -12,3 +12,23 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Navbar transparente ao rolar a página
+    const navbar = document.querySelector(".navbar");
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 50) {
+            navbar.style.background = "rgba(10, 25, 47, 0.95)";
+        } else {
+            navbar.style.background = "rgba(10, 25, 47, 0.8)";
+        }
+    });
+
+    // Animação suave ao clicar nos links do menu 
+    document.querySelectorAll(".navbar a").forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const taget = document.querySelector(this.getAttribute("href"));
+        });
+    });
+});
