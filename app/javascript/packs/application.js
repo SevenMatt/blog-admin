@@ -32,3 +32,49 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Animação de digitação
+    const typingElement = document.getElementById("typing");
+    const texts = ["Desenvolvedor Web", "Criador de Experiências Digitais", "Apaixonado por Tecnologia"];
+    let textIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+        if (charIndex <texts[textIndex].length) {
+            typingElement.textContent += texts[textIndex][charIndex];
+            charIndex++;
+            setTimeout(type, 100);
+        } else {
+            setTimeout(erase, 2000);
+        }
+    }
+
+    function erase() {
+        if (charIndex > 0) {
+            typingElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, 50);
+        } else {
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 500);
+        }
+    }
+
+    type();
+
+    // Animação ao rolar
+    const aboutSection = document.querySelector(".about-section");
+
+    function handleScroll() {
+        const sectionTop = aboutSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (sectionTop < windowHeight - 100) {
+            aboutSection.classList.add("visible");
+        }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Para carregar se estiver visível
+});
